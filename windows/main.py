@@ -1,5 +1,5 @@
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QApplication
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, QApplication, QDialog
 
 from data import CheckThread
 
@@ -15,13 +15,13 @@ def check_input(funct):
     return wrapper
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi('assets/MainWindow.ui', self)
         self.pushButton.clicked.connect(self.reg)
         self.pushButton_2.clicked.connect(self.auth)
-        self.base_line_edit = [self.ui.lineEdit, self.ui.lineEdit_2]
+        self.base_line_edit = [self.lineEdit, self.lineEdit_2]
         self.check_db = CheckThread()
         self.check_db.mysignal.connect(self.signal_handler)
 
