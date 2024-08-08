@@ -1,5 +1,5 @@
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QApplication, QDialog
+from PyQt5.QtWidgets import QMessageBox, QDialog
 
 from data import CheckThread
 
@@ -23,7 +23,7 @@ class MainWindow(QDialog):
         self.pushButton_2.clicked.connect(self.auth)
         self.base_line_edit = [self.lineEdit, self.lineEdit_2]
         self.check_db = CheckThread()
-        self.check_db.mysignal.connect(self.signal_handler)
+        self.check_db.my_signal.connect(self.signal_handler)
 
     # обработчик сигналов
     def signal_handler(self, value):
@@ -31,12 +31,12 @@ class MainWindow(QDialog):
 
     @check_input
     def auth(self):
-        name = self.ui.lineEdit.text()
-        passw = self.ui.lineEdit_2.text()
+        name = self.lineEdit.text()
+        passw = self.lineEdit_2.text()
         self.check_db.thr_login(name, passw)
 
     @check_input
     def reg(self):
-        name = self.ui.lineEdit.text()
-        passw = self.ui.lineEdit_2.text()
+        name = self.lineEdit.text()
+        passw = self.lineEdit_2.text()
         self.check_db.thr_register(name, passw)

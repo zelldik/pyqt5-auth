@@ -1,16 +1,13 @@
 from PyQt5.QtCore import QThread, pyqtSignal
 
-from data.db_hendler import login, register
+from data.db_handler import login, register
 
 
 class CheckThread(QThread):
-    mysignal = pyqtSignal(str)
+    my_signal = pyqtSignal(str)
 
     def thr_login(self, name, passw):
-        login(name, passw, self.mysignal)
+        login(name, passw, self.my_signal)
 
     def thr_register(self, name, passw):
-        register(name, passw, self.mysignal)
-
-
-
+        register(name, passw, self.my_signal)
